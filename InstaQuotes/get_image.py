@@ -7,9 +7,7 @@ import shutil
 import requests
 import io
 
-IMGUR_CLIENT_ID = "d8dbf3d1c64cf3c"
-# IMGUR_CLIENT_ID = os.getenv("IMGUR_CLIENT_ID")
-# IMGUR_CLIENT_SECRET = os.getenv("IMGUR_CLIENT_SECRET")
+IMGUR_CLIENT_ID = os.getenv("IMGUR_CLIENT_ID")
 
 def create_image_flie(img_path):
     try:
