@@ -13,7 +13,7 @@ def create_image_flie(img_path):
             # Copy the original file to the new file
             current_date = datetime.datetime.now().strftime("%Y%m%d")
             print(current_date)
-            new_img_path = img_path + r"\" + current_date + ".png"
+            new_img_path = img_path + "/" + current_date + ".png"
             print("new_img_path: " + new_img_path)
             shutil.copy(main_img, new_img_path)
             return new_img_path
