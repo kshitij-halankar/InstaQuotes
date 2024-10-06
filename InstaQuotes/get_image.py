@@ -7,7 +7,7 @@ import shutil
 
 def create_image_flie(img_path):
     try:
-        main_img = img_path + r"\main.png"
+        main_img = img_path + r"/main.png"
         # Check if the original file exists
         if os.path.exists(main_img):
             # Copy the original file to the new file
@@ -81,7 +81,7 @@ def add_centered_wrapped_text_to_image(image_path, quote_text, quote_author, fon
         # print(f"Image saved with text: '{text}' at '{output_path}'")
 
 def get_image():
-    image_path = r"InstaQuotes\images"
+    image_path = r"InstaQuotes/images"
     new_img_path = create_image_flie(image_path)
     quote = print_quote()
     quote_text = quote['quoteText']
