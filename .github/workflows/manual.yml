@@ -9,7 +9,6 @@ on:
   # schedule:
     # Run this workflow daily at midnight
     # - cron: "0 5 * * *"
-
     
 jobs:
   upload-media:
@@ -28,7 +27,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install requests
-        PIP install Pillow
+        pip install Pillow
 
     - name: Run the Python script
       env:
