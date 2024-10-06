@@ -81,7 +81,7 @@ def add_centered_wrapped_text_to_image(image_path, quote_text, quote_author, fon
         # print(f"Image saved with text: '{text}' at '{output_path}'")
 
 def get_image():
-    image_path = "./images/"
+    image_path = "InstaQuotes/images/"
     new_img_path = create_image_flie(image_path)
     quote = print_quote()
     quote_text = quote['quoteText']
