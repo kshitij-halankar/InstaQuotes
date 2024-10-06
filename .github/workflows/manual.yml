@@ -7,7 +7,8 @@ name: Upload Media to Instagram
 on:
   schedule:
     # Run this workflow daily at midnight
-    - cron: "0 5 * * *"
+    # - cron: "0 5 * * *"
+    workflow_dispatch:
 
     
 jobs:
