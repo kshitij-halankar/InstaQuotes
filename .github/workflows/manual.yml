@@ -29,6 +29,11 @@ jobs:
         pip install requests
         pip install Pillow
 
+    - name: Check working directory and list files
+      run: |
+        pwd  # Print the current working directory
+        ls -al  # List all files in the current directory
+
     - name: Run the Python script
       env:
         FACEBOOK_ACCESS_TOKEN: ${{ secrets.FACEBOOK_ACCESS_TOKEN }}
