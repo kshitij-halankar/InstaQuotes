@@ -7,12 +7,11 @@ def print_quote():
         quote_response = requests.get(quote_url)
         if quote_response.status_code == 200:
             quote_json_data = quote_response.json()
-
-            if 'quoteText' in quote_json_data:
-                print(quote_json_data['quoteText'])
-
-            if 'quoteAuthor' in quote_json_data:
-                print("-",quote_json_data['quoteAuthor'])
+            # if 'quoteText' in quote_json_data:
+            #     print(quote_json_data['quoteText'])
+            #
+            # if 'quoteAuthor' in quote_json_data:
+            #     print("-",quote_json_data['quoteAuthor'])
             return quote_json_data
         else:
             print("Error in data")
