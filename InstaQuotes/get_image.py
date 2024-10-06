@@ -113,7 +113,7 @@ def get_image():
     quote = print_quote()
     quote_text = quote['quoteText']
     quote_author = quote['quoteAuthor']
-    font_path = "AwesomeQuote.ttf"  # Provide path to .ttf file if needed
+    font_path = "InstaQuotes/AwesomeQuote.ttf"  # Provide path to .ttf file if needed
     font_size = 40
     add_centered_wrapped_text_to_image(new_img_path, quote_text, quote_author, font_path, font_size)
     return upload_img_imgur(new_img_path)
