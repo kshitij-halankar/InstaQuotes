@@ -7,14 +7,13 @@ PAGE_ID = os.getenv("FACEBOOK_PAGE_ID")
 ACCESS_TOKEN = os.getenv("FACEBOOK_ACCESS_TOKEN")
 CAPTION = 'Its a wonderful world!'
 
-def upload_insta():
+def upload_insta(img_path):
     media_url = f"https://graph.facebook.com/v21.0/{PAGE_ID}/media"
     current_date = datetime.datetime.now().strftime("%Y%m%d")
-    img_path = "https://raw.githubusercontent.com/kshitij-halankar/InstaQuotes/refs/heads/master/InstaQuotes/images/" + current_date + ".png"
     print(img_path)
     media_payload = {
         'image_url': img_path,
-        'captoin': CAPTION,
+        'caption': CAPTION,
         'access_token': ACCESS_TOKEN
     }
     media_response = requests.post(media_url, data=media_payload)
@@ -32,5 +31,4 @@ def upload_insta():
         publish_result = publish_response.json()
         print(publish_result)
 
-get_image()
-upload_insta()
+upload_insta(get_image())

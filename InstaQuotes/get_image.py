@@ -4,22 +4,31 @@ import textwrap
 from get_quote import print_quote
 import datetime
 import shutil
+import requests
+import io
+
+IMGUR_CLIENT_ID = "d8dbf3d1c64cf3c"
+# IMGUR_CLIENT_ID = os.getenv("IMGUR_CLIENT_ID")
+# IMGUR_CLIENT_SECRET = os.getenv("IMGUR_CLIENT_SECRET")
 
 def create_image_flie(img_path):
     try:
-        main_img = img_path + r"/main.png"
+        # main_img = img_path + r"/main.png"
         # Check if the original file exists
-        if os.path.exists(main_img):
+        img_response = requests.get(img_path)
+        if img_response.status_code == 200:
+            new_img = Image.open(io.BytesIO(img_response.content))
             # Copy the original file to the new file
-            current_date = datetime.datetime.now().strftime("%Y%m%d")
-            print(current_date)
-            new_img_path = img_path + "/" + current_date + ".png"
-            print("new_img_path: " + new_img_path)
-            shutil.copy(main_img, new_img_path)
+            # current_date = datetime.datetime.now().strftime("%Y%m%d")
+            # print(current_date)
+            new_img_path = "./new_img.png"
+            # print("new_img_path: " + new_img_path)
+            # shutil.copy(main_img, new_img_path)
+            new_img.save(new_img_path)
             return new_img_path
             # print(f"File copied successfully: '{original_filename}' -> '{new_filename}'")
         else:
-            print(f"The file '{main_img}' does not exist.")
+            print(f"The file '{img_path}' does not exist.")
             return None
     except Exception as e:
         print(f"An error occurred: {e}")
@@ -78,10 +87,30 @@ def add_centered_wrapped_text_to_image(image_path, quote_text, quote_author, fon
         # Save the edited image
         # img.show()
         img.save(image_path)
-        # print(f"Image saved with text: '{text}' at '{output_path}'")
+        return image_path
+
+def upload_img_imgur(img_path):
+    url = "https://api.imgur.com/3/image"
+    headers = {
+        "Authorization": f"Client-ID {IMGUR_CLIENT_ID}"
+    }
+    with open(img_path, 'rb') as image_file:
+        img_file = {
+            'image': image_file
+        }
+        response = requests.post(url, headers=headers, files=img_file)
+
+        if response.status_code == 200:
+            imgur_response = response.json()
+            img_url = imgur_response["data"]["link"]
+            print("Image uploaded successfully:", img_url)
+            return img_url + ".png"
+        else:
+            print("Failed to upload image:", response.status_code, response.text)
+            return None
 
 def get_image():
-    image_path = r"InstaQuotes/images"
+    image_path = r"https://raw.githubusercontent.com/kshitij-halankar/InstaQuotes/refs/heads/master/InstaQuotes/images/main.png"
     new_img_path = create_image_flie(image_path)
     quote = print_quote()
     quote_text = quote['quoteText']
@@ -89,6 +118,7 @@ def get_image():
     font_path = "AwesomeQuote.ttf"  # Provide path to .ttf file if needed
     font_size = 40
     add_centered_wrapped_text_to_image(new_img_path, quote_text, quote_author, font_path, font_size)
+    return upload_img_imgur(new_img_path)
 
-get_image()
+# get_image()
 
