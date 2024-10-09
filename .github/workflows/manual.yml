@@ -5,10 +5,10 @@ name: Upload Media to Instagram
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
-  # workflow_dispatch:
-  schedule:
-    # Run this workflow daily at midnight
-    - cron: "0 8 * * *"
+  workflow_dispatch:
+  # schedule:
+  #   # Run this workflow daily at midnight
+  #   - cron: "0 8 * * *"
     
 jobs:
   upload-media:
